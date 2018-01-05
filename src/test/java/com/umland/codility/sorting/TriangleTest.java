@@ -2,9 +2,7 @@ package com.umland.codility.sorting;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class TriangleTest {
     private Triangle triangle = new Triangle();
@@ -34,8 +32,9 @@ public class TriangleTest {
     }
 
     @Test
-    public void stringLengthTest() {
-        String test = "ab";
-        System.out.println("test length: " + test.length());
+    public void maxIntTest() {
+        int[] A = new int[]{Integer.MAX_VALUE - 90, Integer.MAX_VALUE - 98, Integer.MAX_VALUE - 95,
+                Integer.MAX_VALUE - 99, Integer.MAX_VALUE - 92, Integer.MAX_VALUE - 80};
+        assertEquals(1, triangle.solution(A));
     }
 }

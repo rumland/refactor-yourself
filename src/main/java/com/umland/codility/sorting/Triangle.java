@@ -41,17 +41,18 @@ package com.umland.codility.sorting;
  */
 public class Triangle {
     /**
-     * 90% correct and 0% on performance
-     * extreme_arith_overflow1: overflow test, 3 MAXINTs ✘WRONG ANSWER got 0 expected 1
-     *
-     * large2: 1 followed by an ascending sequence of ~50K elements from [0..100K], length=~50K ✘TIMEOUT ERROR
-     *      1. 6.000 s TIMEOUT ERROR,  running time: >6.00 sec., time limit: 0.50 sec.
-     * large_negative: chaotic sequence of negative values from [-1M..-1], length=100K ✘TIMEOUT ERROR
-     *      1. 7.000 s TIMEOUT ERROR,  running time: >7.00 sec., time limit: 1.22 sec.
-     * large_negative2: chaotic sequence of negative values from [-10..-1], length=100K ✘TIMEOUT ERROR
-     *      1. 6.000 s TIMEOUT ERROR,  running time: >6.00 sec., time limit: 0.70 sec.
-     * large_negative3: sequence of -1 value, length=100K ✘TIMEOUT ERROR
-     *      1. 6.000 s TIMEOUT ERROR,  running time: >6.00 sec., time limit: 0.66 sec.
+     * TODO: improve performance after going through all other exercises
+     * 33% on performance evaluation
+     * <ul>
+     * <li>large2: 1 followed by an ascending sequence of ~50K elements from [0..100K], length=~50K ✘TIMEOUT ERROR
+     * 1. 6.000 s TIMEOUT ERROR,  running time: >6.00 sec., time limit: 0.50 sec.</li>
+     * <li>large_negative: chaotic sequence of negative values from [-1M..-1], length=100K ✘TIMEOUT ERROR
+     * 1. 7.000 s TIMEOUT ERROR,  running time: >7.00 sec., time limit: 1.22 sec.</li>
+     * <li>large_negative2: chaotic sequence of negative values from [-10..-1], length=100K ✘TIMEOUT ERROR
+     * 1. 6.000 s TIMEOUT ERROR,  running time: >6.00 sec., time limit: 0.70 sec.</li>
+     * <li>large_negative3: sequence of -1 value, length=100K ✘TIMEOUT ERROR
+     * 1. 6.000 s TIMEOUT ERROR,  running time: >6.00 sec., time limit: 0.66 sec.</li>
+     * </ul>
      *
      * @param A array possibly containing triplet
      * @return 1 if A contains triplet, 0 otherwise
@@ -77,7 +78,10 @@ public class Triangle {
     private boolean isTriplet(int[] A, int P, int Q, int R) {
         boolean triplet = false;
         if (0 <= P && P < Q && Q < R && R < A.length) {
-            if (A[P] + A[Q] > A[R] && A[Q] + A[R] > A[P] && A[R] + A[P] > A[Q]) {
+            long a = (long) A[P] + (long) A[Q];
+            long b = (long) A[Q] + (long) A[R];
+            long c = (long) A[R] + (long) A[P];
+            if (a > (long) A[R] && b > (long) A[P] && c > (long) A[Q]) {
                 triplet = true;
             }
         }
