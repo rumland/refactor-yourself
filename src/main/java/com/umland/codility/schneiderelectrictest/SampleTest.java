@@ -1,5 +1,8 @@
 package com.umland.codility.schneiderelectrictest;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 /**
  * A zero-indexed array A consisting of N different integers is given. The array contains all integers in the
  * range [0..N-1]. Sets S[K] for 0 <= K < N are defined as follows:
@@ -49,15 +52,7 @@ class SampleTest {
         }
 
         problemArray = A;
-        int max = Integer.MIN_VALUE;
-        for (int idx = 0; idx < problemArray.length; ++idx) {
-            int value = getSetCount(idx, idx);
-            if (value > max) {
-                max = value;
-            }
-        }
-
-        return max;
+        return IntStream.range(0, A.length).map(idx -> getSetCount(idx, idx)).max().orElse(0);
     }
 
     // S[K] = { A[K], A[A[K]], A[A[A[K]]], ... }.
