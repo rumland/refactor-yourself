@@ -1,7 +1,5 @@
 package com.umland.codility.schneiderelectrictest;
 
-import java.util.*;
-
 /**
  * A zero-indexed array A consisting of N different integers is given. The array contains all integers in the
  * range [0..N-1]. Sets S[K] for 0 <= K < N are defined as follows:
@@ -43,16 +41,19 @@ import java.util.*;
  * Elements of input arrays can be modified.
  */
 class SampleTest {
+    private int[] problemArray;
+
     int solution(int[] A) {
         if (A.length == 0) {
             return 0;
         }
 
+        problemArray = A;
         int max = Integer.MIN_VALUE;
-        for (int idx = 0; idx < A.length; ++idx) {
-            int count = getSetCount(A, idx);
-            if (count > max) {
-                max = count;
+        for (int idx = 0; idx < problemArray.length; ++idx) {
+            int value = getSetCount(idx, idx);
+            if (value > max) {
+                max = value;
             }
         }
 
@@ -60,16 +61,15 @@ class SampleTest {
     }
 
     // S[K] = { A[K], A[A[K]], A[A[A[K]]], ... }.
-    private int getSetCount(int[] A, int K) {
-        int currentValue = A[K];
-        Collection<Integer> seenValues = new LinkedList<>();
-        while (!seenValues.contains(currentValue)) {
-            seenValues.add(currentValue);
-            currentValue = A[currentValue];
+    private int getSetCount(int idx, int firstIdx) {
+        if (loopDetected(idx, firstIdx)) {
+            return 1;
         }
 
-        System.out.println("S[" + K + "]: " + Arrays.toString(seenValues.toArray()));
+        return 1 + getSetCount(problemArray[idx], firstIdx);
+    }
 
-        return seenValues.size();
+    private boolean loopDetected(int index, int firstIndex) {
+        return problemArray[index] == firstIndex;
     }
 }
