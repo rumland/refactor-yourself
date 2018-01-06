@@ -47,7 +47,7 @@ package com.umland.codility.sorting;
  */
 public class MaxProductOfThree {
     /**
-     * A[P] * A[Q] * A[R] (0 ≤ P < Q < R < N).
+     * TODO: 100% correct but slow. Need to improve performance.
      *
      * @param A input problem
      * @return solution as described above
